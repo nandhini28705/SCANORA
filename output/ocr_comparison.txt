@@ -1,0 +1,10 @@
+
+--- SCANORA OCR COMPARISON ---
+
+ORIGINAL IMAGE TEXT
+-------------------
+800x600
+
+ENHANCED IMAGE TEXT
+-------------------
+800x600

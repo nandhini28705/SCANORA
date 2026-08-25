@@ -1,0 +1,17 @@
+
+--- SCANORA IMAGE QUALITY REPORT ---
+
+Image Name      : test.jpg
+Image Size      : 800 x 600
+Brightness      : 162.68
+Sharpness       : 1.58
+Quality         : Blurry
+Lighting        : Good
+Quality Score   : 34.44/100
+
+Recommendation  : Retake image with better focus and clarity.
+
+--- Extracted Text ---
+
+800x600
+

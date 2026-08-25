@@ -1,0 +1,54 @@
+
+========================================
+        SCANORA FINAL REPORT
+========================================
+
+ORIGINAL IMAGE
+----------------------------------------
+
+Image Size      : 800 x 600
+Brightness      : 162.68
+Sharpness       : 1.58
+Quality         : Blurry
+Lighting        : Good
+Quality Score   : 34.44/100
+
+
+ENHANCED IMAGE
+----------------------------------------
+
+Image Size      : 800 x 600
+Brightness      : 161.53
+Sharpness       : 2.52
+Quality         : Blurry
+Lighting        : Good
+Quality Score   : 37.05/100
+
+
+QUALITY IMPROVEMENT
+----------------------------------------
+
+Improvement     : 2.62 points
+
+
+ORIGINAL OCR
+----------------------------------------
+
+800x600
+
+
+ENHANCED OCR
+----------------------------------------
+
+800x600
+
+
+FINAL RECOMMENDATION
+----------------------------------------
+
+Image is still low quality. Retake with better focus and lighting.
+
+
+========================================
+       SCANORA ANALYSIS COMPLETED
+========================================

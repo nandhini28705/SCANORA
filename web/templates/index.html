@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCANORA - Image Quality Analyzer</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 35px;
+            font-size: 18px;
+        }
+
+        .upload-box {
+            border: 2px dashed #555;
+            padding: 50px 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        input[type="file"] {
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 8px;
+            background: #333;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        .features {
+            margin-top: 35px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .feature {
+            padding: 15px;
+            background: #f1f1f1;
+            border-radius: 8px;
+            min-width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>SCANORA</h1>
+
+        <p class="subtitle">
+            Smart Image Quality Analysis and OCR System
+        </p>
+
+        <div class="upload-box">
+            <h2>Upload an Image</h2>
+            <p>Select an image to analyze its quality and extract text.</p>
+
+            <br>
+
+            <input type="file" accept="image/*">
+        </div>
+
+        <button>Analyze Image</button>
+
+        <div class="features">
+            <div class="feature">?? OCR</div>
+            <div class="feature">?? Quality Score</div>
+            <div class="feature">?? Smart Recommendation</div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+
+src/web/uploads/*
+!src/web/uploads/.gitkeep
+
+analysis_history.json
+
+.env
+*.log

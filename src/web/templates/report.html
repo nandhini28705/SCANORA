@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SCANORA - Final Report</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f4f6f8;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #222;
+        }
+
+
+        .container {
+            width: 95%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .card h2 {
+            font-size: 23px;
+            margin-bottom: 22px;
+        }
+
+
+        /* =========================
+           IMAGE INFORMATION
+        ========================= */
+
+        .image-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .info-box {
+            background: #f7f7f7;
+
+            padding: 20px;
+
+            border-radius: 12px;
+        }
+
+
+        .info-box span {
+            display: block;
+
+            font-size: 14px;
+
+            color: #777;
+
+            margin-bottom: 8px;
+        }
+
+
+        .info-box strong {
+            font-size: 18px;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================
+           COMPARISON
+        ========================= */
+
+        .comparison-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+
+        .analysis-box {
+            background: #f7f7f7;
+
+            padding: 22px;
+
+            border-radius: 14px;
+        }
+
+
+        .analysis-box h3 {
+            text-align: center;
+
+            font-size: 20px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .metric-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid #e2e2e2;
+        }
+
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .metric-label {
+            color: #666;
+
+            font-size: 15px;
+        }
+
+
+        .metric-value {
+            font-weight: bold;
+
+            font-size: 17px;
+        }
+
+
+        /* =========================
+           SCORE
+        ========================= */
+
+        .score {
+            margin-top: 20px;
+
+            text-align: center;
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            padding: 15px;
+
+            background: white;
+
+            border-radius: 10px;
+        }
+
+
+        /* =========================
+           IMPROVEMENT
+        ========================= */
+
+        .improvement-box {
+            text-align: center;
+
+            background: #f7f7f7;
+
+            padding: 30px;
+
+            border-radius: 14px;
+        }
+
+
+        .improvement-points {
+            font-size: 42px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+
+        .improvement-label {
+            color: #666;
+
+            font-size: 17px;
+        }
+
+
+        .percentage {
+            margin-top: 15px;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           OCR
+        ========================= */
+
+        .ocr-text {
+            background: #f7f7f7;
+
+            padding: 22px;
+
+            border-radius: 12px;
+
+            min-height: 120px;
+
+            white-space: pre-wrap;
+
+            word-wrap: break-word;
+
+            line-height: 1.7;
+
+            color: #333;
+        }
+
+
+        /* =========================
+           RECOMMENDATION
+        ========================= */
+
+        .recommendation {
+            background: #f7f7f7;
+
+            padding: 22px;
+
+            border-radius: 12px;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .button-container {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 10px;
+        }
+
+
+        .button {
+            padding: 14px 28px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            background: #333;
+
+            color: white;
+
+            transition: 0.2s;
+        }
+
+
+        .button:hover {
+            background: #555;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 30px;
+
+            margin-bottom: 10px;
+
+            color: #777;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 25px 12px;
+            }
+
+
+            .header h1 {
+                font-size: 34px;
+            }
+
+
+            .image-info,
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .card {
+                padding: 20px;
+            }
+
+
+            .improvement-points {
+                font-size: 34px;
+            }
+
+
+            .button-container {
+                flex-direction: column;
+            }
+
+
+            .button {
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- =====================
+             HEADER
+        ====================== -->
+
+        <div class="header">
+
+            <h1>
+                SCANORA
+            </h1>
+
+            <p class="subtitle">
+                Smart Image Quality Analysis and OCR System
+            </p>
+
+        </div>
+
+
+
+        <!-- =====================
+             IMAGE INFORMATION
+        ====================== -->
+
+        <div class="card">
+
+            <h2>
+                📷 Image Information
+            </h2>
+
+
+            <div class="image-info">
+
+
+                <div class="info-box">
+
+                    <span>
+                        Original Image
+                    </span>
+
+                    <strong>
+                        {{ filename }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span>
+                        Image Size
+                    </span>
+
+                    <strong>
+                        {{ width }} × {{ height }}
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             QUALITY COMPARISON
+        ====================== -->
+
+        <div class="card">
+
+            <h2>
+                📊 Quality Comparison
+            </h2>
+
+
+            <div class="comparison-grid">
+
+
+                <!-- ORIGINAL -->
+
+                <div class="analysis-box">
+
+                    <h3>
+                        📷 Original Image
+                    </h3>
+
+
+                    <div class="metric-row">
+
+                        <span class="metric-label">
+                            Brightness
+                        </span>
+
+                        <span class="metric-value">
+                            {{ original_brightness }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-row">
+
+                        <span class="metric-label">
+                            Sharpness
+                        </span>
+
+                        <span class="metric-value">
+                            {{ original_sharpness }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-row">
+
+                        <span class="metric-label">
+                            Contrast
+                        </span>
+
+                        <span class="metric-value">
+                            {{ original_contrast }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="score">
+
+                        {{ original_score }}/100
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ENHANCED -->
+
+                <div class="analysis-box">
+
+                    <h3>
+                        ✨ Enhanced Image
+                    </h3>
+
+
+                    <div class="metric-row">
+
+                        <span class="metric-label">
+                            Brightness
+                        </span>
+
+                        <span class="metric-value">
+                            {{ enhanced_brightness }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-row">
+
+                        <span class="metric-label">
+                            Sharpness
+                        </span>
+
+                        <span class="metric-value">
+                            {{ enhanced_sharpness }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-row">
+
+                        <span class="metric-label">
+                            Contrast
+                        </span>
+
+                        <span class="metric-value">
+                            {{ enhanced_contrast }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="score">
+
+                        {{ enhanced_score }}/100
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             QUALITY IMPROVEMENT
+        ====================== -->
+
+        <div class="card">
+
+            <h2>
+                🚀 Quality Improvement
+            </h2>
+
+
+            <div class="improvement-box">
+
+
+                <div class="improvement-points">
+
+                    {{ improvement }} points
+
+                </div>
+
+
+                <div class="improvement-label">
+
+                    Overall Quality Improvement
+
+                </div>
+
+
+                <div class="percentage">
+
+                    Improvement Percentage:
+                    {{ improvement_percent }}%
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             OCR RESULT
+        ====================== -->
+
+        <div class="card">
+
+            <h2>
+                📝 OCR Result
+            </h2>
+
+
+            <div class="ocr-text">
+
+                {% if text %}
+
+                    {{ text }}
+
+                {% else %}
+
+                    No text detected.
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             SMART RECOMMENDATION
+        ====================== -->
+
+        <div class="card">
+
+            <h2>
+                💡 Smart Recommendation
+            </h2>
+
+
+            <div class="recommendation">
+
+                {{ recommendation }}
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             BUTTONS
+        ====================== -->
+
+        <div class="button-container">
+
+
+            <!-- DOWNLOAD PDF -->
+
+            <form
+                action="/download-report"
+                method="POST"
+            >
+
+
+                <input
+                    type="hidden"
+                    name="filename"
+                    value="{{ filename }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="width"
+                    value="{{ width }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="height"
+                    value="{{ height }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="original_brightness"
+                    value="{{ original_brightness }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="original_sharpness"
+                    value="{{ original_sharpness }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="original_contrast"
+                    value="{{ original_contrast }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="original_score"
+                    value="{{ original_score }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="enhanced_brightness"
+                    value="{{ enhanced_brightness }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="enhanced_sharpness"
+                    value="{{ enhanced_sharpness }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="enhanced_contrast"
+                    value="{{ enhanced_contrast }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="enhanced_score"
+                    value="{{ enhanced_score }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="improvement"
+                    value="{{ improvement }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="improvement_percent"
+                    value="{{ improvement_percent }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="text"
+                    value="{{ text }}"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="recommendation"
+                    value="{{ recommendation }}"
+                >
+
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+
+                    📄 Download Report PDF
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- ANALYZE AGAIN -->
+
+            <a
+                href="/"
+                class="button"
+            >
+
+                🔄 Analyze Another Image
+
+            </a>
+
+
+        </div>
+
+
+
+        <div class="footer">
+
+            Generated by SCANORA —
+            Smart Image Quality Analysis and OCR System
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

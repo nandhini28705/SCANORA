@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>SCANORA - Smart Image Quality Analyzer</title>
+
+    <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f4f6f8;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+
+        .container {
+            width: 95%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            color: #222;
+        }
+
+
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           MAIN CARD
+        ========================= */
+
+        .card {
+            width: 100%;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 25px;
+            color: #222;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        #uploadForm {
+            width: 100%;
+        }
+
+
+        /* =========================
+           UPLOAD AREA
+        ========================= */
+
+        .upload-area {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 100%;
+
+            min-height: 280px;
+
+            border: 2px dashed #777;
+
+            border-radius: 15px;
+
+            padding: 40px 20px;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            background: #fafafa;
+
+            transition:
+                border-color 0.3s,
+                background 0.3s;
+
+        }
+
+
+        .upload-area:hover {
+
+            border-color: #333;
+
+            background: #f0f0f0;
+
+        }
+
+
+        .upload-area.dragover {
+
+            border-color: #333;
+
+            background: #e8e8e8;
+
+        }
+
+
+        /* =========================
+           UPLOAD ICON
+        ========================= */
+
+        .upload-icon {
+
+            font-size: 55px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        /* =========================
+           UPLOAD TITLE
+        ========================= */
+
+        .upload-title {
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            color: #222;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* =========================
+           UPLOAD TEXT
+        ========================= */
+
+        .upload-text {
+
+            color: #777;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           HIDE FILE INPUT
+        ========================= */
+
+        #imageInput {
+
+            display: none;
+
+        }
+
+
+        /* =========================
+           FILE NAME
+        ========================= */
+
+        .file-name {
+
+            width: 100%;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            min-height: 24px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            color: #444;
+
+            word-break: break-word;
+
+        }
+
+
+        /* =========================
+           IMAGE PREVIEW
+        ========================= */
+
+        .preview-container {
+
+            display: none;
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            text-align: center;
+
+        }
+
+
+        .preview-container img {
+
+            display: block;
+
+            max-width: 100%;
+
+            max-height: 350px;
+
+            margin: 0 auto;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0, 0, 0, 0.15);
+
+        }
+
+
+        /* =========================
+           ANALYZE BUTTON
+        ========================= */
+
+        .analyze-button {
+
+            display: block;
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #333;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: background 0.3s;
+
+        }
+
+
+        .analyze-button:hover:not(:disabled) {
+
+            background: #555;
+
+        }
+
+
+        .analyze-button:disabled {
+
+            background: #aaaaaa;
+
+            cursor: not-allowed;
+
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+
+            width: 100%;
+
+            margin-top: 35px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .feature {
+
+            background: #f7f7f7;
+
+            padding: 22px 15px;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+        }
+
+
+        .feature-icon {
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .feature h3 {
+
+            font-size: 16px;
+
+            color: #222;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .feature p {
+
+            font-size: 13px;
+
+            color: #666;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 30px;
+
+            color: #888;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .features {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 25px 12px;
+
+            }
+
+
+            .container {
+
+                width: 100%;
+
+            }
+
+
+            .header h1 {
+
+                font-size: 38px;
+
+            }
+
+
+            .subtitle {
+
+                font-size: 16px;
+
+            }
+
+
+            .card {
+
+                padding: 22px 16px;
+
+            }
+
+
+            .card h2 {
+
+                font-size: 21px;
+
+            }
+
+
+            .upload-area {
+
+                min-height: 240px;
+
+                padding: 30px 15px;
+
+            }
+
+
+            .features {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <div class="header">
+
+            <h1>SCANORA</h1>
+
+            <p class="subtitle">
+
+                Smart Image Quality Analysis and OCR System
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================
+             MAIN CARD
+        ========================= -->
+
+        <div class="card">
+
+
+            <h2>
+
+                📷 Upload Your Image
+
+            </h2>
+
+
+            <!-- =========================
+                 UPLOAD FORM
+            ========================= -->
+
+            <form
+
+                action="/analyze"
+
+                method="POST"
+
+                enctype="multipart/form-data"
+
+                id="uploadForm"
+
+            >
+
+
+                <!-- =========================
+                     UPLOAD BOX
+                ========================= -->
+
+                <label
+
+                    for="imageInput"
+
+                    class="upload-area"
+
+                    id="uploadArea"
+
+                >
+
+
+                    <div class="upload-icon">
+
+                        📁
+
+                    </div>
+
+
+                    <div class="upload-title">
+
+                        Click to Upload Image
+
+                    </div>
+
+
+                    <div class="upload-text">
+
+                        or Drag & Drop your image here
+
+                    </div>
+
+
+                    <div class="upload-text">
+
+                        Supported: JPG, JPEG, PNG
+
+                    </div>
+
+
+                </label>
+
+
+                <!-- =========================
+                     FILE INPUT
+                ========================= -->
+
+                <input
+
+                    type="file"
+
+                    name="image"
+
+                    id="imageInput"
+
+                    accept=".jpg,.jpeg,.png"
+
+                    required
+
+                >
+
+
+                <!-- =========================
+                     FILE NAME
+                ========================= -->
+
+                <div
+
+                    class="file-name"
+
+                    id="fileName"
+
+                >
+
+                    No image selected
+
+                </div>
+
+
+                <!-- =========================
+                     IMAGE PREVIEW
+                ========================= -->
+
+                <div
+
+                    class="preview-container"
+
+                    id="previewContainer"
+
+                >
+
+                    <img
+
+                        id="imagePreview"
+
+                        src=""
+
+                        alt="Selected Image Preview"
+
+                    >
+
+                </div>
+
+
+                <!-- =========================
+                     ANALYZE BUTTON
+                ========================= -->
+
+                <button
+
+                    type="submit"
+
+                    class="analyze-button"
+
+                    id="analyzeButton"
+
+                    disabled
+
+                >
+
+                    🔍 Analyze Image
+
+                </button>
+
+
+            </form>
+
+
+            <!-- =========================
+                 FEATURES
+            ========================= -->
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+
+                        📊
+
+                    </div>
+
+                    <h3>
+
+                        Quality Analysis
+
+                    </h3>
+
+                    <p>
+
+                        Analyze brightness,
+                        sharpness and contrast.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+
+                        ✨
+
+                    </div>
+
+                    <h3>
+
+                        Image Enhancement
+
+                    </h3>
+
+                    <p>
+
+                        Improve image clarity
+                        and visual quality.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+
+                        📝
+
+                    </div>
+
+                    <h3>
+
+                        OCR Text Extraction
+
+                    </h3>
+
+                    <p>
+
+                        Extract readable text
+                        from uploaded images.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================
+             FOOTER
+        ========================= -->
+
+        <div class="footer">
+
+            <p>
+
+                SCANORA © 2026
+
+            </p>
+
+            <p>
+
+                Smart Image Quality Analyzer
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        const imageInput =
+            document.getElementById("imageInput");
+
+
+        const uploadArea =
+            document.getElementById("uploadArea");
+
+
+        const fileName =
+            document.getElementById("fileName");
+
+
+        const previewContainer =
+            document.getElementById("previewContainer");
+
+
+        const imagePreview =
+            document.getElementById("imagePreview");
+
+
+        const analyzeButton =
+            document.getElementById("analyzeButton");
+
+
+        /* =========================
+           FILE SELECT
+        ========================= */
+
+        imageInput.addEventListener(
+
+            "change",
+
+            function () {
+
+                if (
+                    imageInput.files &&
+                    imageInput.files.length > 0
+                ) {
+
+                    showImage(
+                        imageInput.files[0]
+                    );
+
+                }
+
+            }
+
+        );
+
+
+        /* =========================
+           SHOW IMAGE
+        ========================= */
+
+        function showImage(file) {
+
+
+            const allowedTypes = [
+
+                "image/jpeg",
+
+                "image/jpg",
+
+                "image/png"
+
+            ];
+
+
+            if (
+                !allowedTypes.includes(
+                    file.type
+                )
+            ) {
+
+                alert(
+                    "Please select a JPG, JPEG or PNG image."
+                );
+
+                return;
+
+            }
+
+
+            fileName.textContent =
+                "Selected: " + file.name;
+
+
+            analyzeButton.disabled =
+                false;
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function (event) {
+
+
+                    imagePreview.src =
+                        event.target.result;
+
+
+                    previewContainer.style.display =
+                        "block";
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+
+
+        /* =========================
+           DRAG OVER
+        ========================= */
+
+        uploadArea.addEventListener(
+
+            "dragover",
+
+            function (event) {
+
+                event.preventDefault();
+
+
+                uploadArea.classList.add(
+                    "dragover"
+                );
+
+            }
+
+        );
+
+
+        /* =========================
+           DRAG LEAVE
+        ========================= */
+
+        uploadArea.addEventListener(
+
+            "dragleave",
+
+            function () {
+
+                uploadArea.classList.remove(
+                    "dragover"
+                );
+
+            }
+
+        );
+
+
+        /* =========================
+           DROP IMAGE
+        ========================= */
+
+        uploadArea.addEventListener(
+
+            "drop",
+
+            function (event) {
+
+                event.preventDefault();
+
+
+                uploadArea.classList.remove(
+                    "dragover"
+                );
+
+
+                const files =
+                    event.dataTransfer.files;
+
+
+                if (
+                    files &&
+                    files.length > 0
+                ) {
+
+
+                    const file =
+                        files[0];
+
+
+                    if (
+                        file.type === "image/jpeg" ||
+                        file.type === "image/png"
+                    ) {
+
+
+                        const dataTransfer =
+                            new DataTransfer();
+
+
+                        dataTransfer.items.add(
+                            file
+                        );
+
+
+                        imageInput.files =
+                            dataTransfer.files;
+
+
+                        showImage(
+                            file
+                        );
+
+
+                    }
+
+                    else {
+
+                        alert(
+                            "Please drop a JPG, JPEG or PNG image."
+                        );
+
+                    }
+
+                }
+
+            }
+
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
